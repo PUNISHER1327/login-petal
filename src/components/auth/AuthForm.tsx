@@ -47,61 +47,63 @@ const AuthForm = ({ isSignUp, onToggle }: AuthFormProps) => {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
-        {isSignUp && (
-          <div className="animate-slide-in">
+        <div className="transition-all duration-500 ease-in-out">
+          {isSignUp && (
+            <div className="animate-fade-in mb-6">
+              <FloatingInput
+                label="Full Name"
+                value={formData.name}
+                onChange={handleInputChange("name")}
+                required
+              />
+            </div>
+          )}
+          
+          <div className="animate-fade-in mb-6">
             <FloatingInput
-              label="Full Name"
-              value={formData.name}
-              onChange={handleInputChange("name")}
+              type="email"
+              label="Email Address"
+              value={formData.email}
+              onChange={handleInputChange("email")}
               required
             />
           </div>
-        )}
-        
-        <div className={cn("animate-slide-in", isSignUp && "animation-delay-100")}>
-          <FloatingInput
-            type="email"
-            label="Email Address"
-            value={formData.email}
-            onChange={handleInputChange("email")}
-            required
-          />
-        </div>
-        
-        <div className={cn("animate-slide-in", isSignUp && "animation-delay-200")}>
-          <FloatingInput
-            type="password"
-            label="Password"
-            value={formData.password}
-            onChange={handleInputChange("password")}
-            required
-          />
-        </div>
-
-        {isSignUp && (
-          <div className="flex items-center space-x-2 animate-slide-in animation-delay-300">
-            <Checkbox
-              id="terms"
-              checked={formData.agreeToTerms}
-              onCheckedChange={(checked) => 
-                setFormData(prev => ({ ...prev, agreeToTerms: checked as boolean }))
-              }
+          
+          <div className="animate-fade-in mb-6">
+            <FloatingInput
+              type="password"
+              label="Password"
+              value={formData.password}
+              onChange={handleInputChange("password")}
+              required
             />
-            <label
-              htmlFor="terms"
-              className="text-sm text-muted-foreground leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              I agree to the{" "}
-              <a href="#" className="text-primary hover:underline">
-                Terms of Service
-              </a>{" "}
-              and{" "}
-              <a href="#" className="text-primary hover:underline">
-                Privacy Policy
-              </a>
-            </label>
           </div>
-        )}
+
+          {isSignUp && (
+            <div className="flex items-center space-x-2 animate-fade-in mb-6">
+              <Checkbox
+                id="terms"
+                checked={formData.agreeToTerms}
+                onCheckedChange={(checked) => 
+                  setFormData(prev => ({ ...prev, agreeToTerms: checked as boolean }))
+                }
+              />
+              <label
+                htmlFor="terms"
+                className="text-sm text-muted-foreground leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
+                I agree to the{" "}
+                <a href="#" className="text-primary hover:underline">
+                  Terms of Service
+                </a>{" "}
+                and{" "}
+                <a href="#" className="text-primary hover:underline">
+                  Privacy Policy
+                </a>
+              </label>
+            </div>
+          )}
+        </div>
 
         <Button 
           type="submit" 
