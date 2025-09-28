@@ -4,6 +4,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { FloatingInput } from "./FloatingInput";
 import { SocialButton } from "./SocialButton";
 import { ForgotPasswordLink } from "./ForgotPasswordLink";
+import { AnimatedToggleButton } from "./AnimatedToggleButton";
 import { cn } from "@/lib/utils";
 
 interface AuthFormProps {
@@ -32,7 +33,7 @@ const AuthForm = ({ isSignUp, onToggle }: AuthFormProps) => {
   };
 
   return (
-    <div className="glass-card p-8 rounded-xl w-full max-w-md animate-fade-in-up">
+    <div className="glass-card p-8 rounded-xl w-full animate-fade-in-up">
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold text-foreground mb-2">
           {isSignUp ? "Create Account" : "Welcome Back"}
@@ -132,13 +133,10 @@ const AuthForm = ({ isSignUp, onToggle }: AuthFormProps) => {
         <div className="text-center">
           <p className="text-sm text-muted-foreground">
             {isSignUp ? "Already have an account?" : "Don't have an account?"}{" "}
-            <button
-              type="button"
+            <AnimatedToggleButton
+              text={isSignUp ? "Sign in" : "Sign up"}
               onClick={onToggle}
-              className="text-primary hover:text-primary-dark font-medium transition-colors duration-300"
-            >
-              {isSignUp ? "Sign in" : "Sign up"}
-            </button>
+            />
           </p>
         </div>
       </form>
